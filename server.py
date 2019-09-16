@@ -5,7 +5,8 @@ app = Flask(__name__)
 app.secret_key = "I am a secret key! Don't share me!"
 
 # this email regex may have some false positives, but at least it
-# won't have false negatives like emails container ñ or ö
+# won't have false negatives like emails containing characters like
+# ñ or ö
 EMAIL_REGEX = re.compile(r"^[^@]+@[^@]+\.[^@]+$")
 
 @app.route("/")
