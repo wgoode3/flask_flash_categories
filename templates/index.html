@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>I am a form to submit</legend>
+        <form action="/process" method="post">
+            <div>
+                <label>Name:</label>
+                <input type="text" name="name" />
+                {% with errors = get_flashed_messages(category_filter=["name"]) %}
+                    {% if errors %}
+                        {%- for msg in errors %}
+                        <span class="error">{{ msg }}</span>
+                        {% endfor -%}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div>
+                <label>Email:</label>
+                <input type="text" name="email" />
+                {% with errors = get_flashed_messages(category_filter=["email"]) %}
+                    {% if errors %}
+                        {%- for msg in errors %}
+                        <span class="error">{{ msg }}</span>
+                        {% endfor -%}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <input type="submit" value="Submit" />
+        </form>
+    </fieldset>
+</body>
+</html>
